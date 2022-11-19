@@ -17,11 +17,7 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "declarationMap": true,
-    "baseUrl": ".",
-    "paths": {
-      "react-tcj-ui-components": ["src/components/index.ts"]
-    },
-    "typeRoots": ["node_modules/@types", "src/components/index.d.ts"]
+    "baseUrl": "."
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]

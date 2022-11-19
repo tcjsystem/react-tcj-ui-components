@@ -7,7 +7,13 @@ import { resolve } from "path";
 
 export default defineConfig({
   plugins: [
-    react(),
+    react({
+      // Exclude storybook stories
+      exclude: /\.stories\.(t|j)sx?$/,
+      // Only .tsx files
+      include: "**/*.tsx",
+      jsxRuntime: "classic",
+    }),
     tsConfigPaths(),
     vanillaExtractPlugin(),
     dts({
@@ -16,15 +22,8 @@ export default defineConfig({
       skipDiagnostics: true,
     }),
   ],
-  resolve: {
-    alias: [
-      {
-        find: "#",
-        replacement: resolve(__dirname, "/src"),
-      },
-    ],
-  },
   build: {
+    minify: false,
     lib: {
       entry: resolve("src", "components/index.ts"),
       name: "react-tcj-ui-components",
@@ -36,6 +35,7 @@ export default defineConfig({
       output: {
         globals: {
           react: "React",
+          "react-dom": "ReactDOM",
         },
       },
     },

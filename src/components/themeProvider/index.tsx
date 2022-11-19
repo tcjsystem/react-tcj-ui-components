@@ -5,12 +5,6 @@ interface ThemeProviderProps {
 }
 
 export default function ThemeProvider({ children }: ThemeProviderProps) {
-  const { theme, changeThemeMode } = useThemeMode();
-  return (
-    <div className={theme}>
-      <button onClick={() => changeThemeMode("dark")}>다크모드</button>
-      <button onClick={() => changeThemeMode("light")}>라이트모드</button>
-      {children}
-    </div>
-  );
+  const { theme } = useThemeMode();
+  return <div className={theme}>{children}</div>;
 }

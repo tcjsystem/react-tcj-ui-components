@@ -1,20 +1,12 @@
 import Button from "./index";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { FiPlus } from "react-icons/fi";
+import { FiPlus, FiSend } from "react-icons/fi";
 export default {
   component: Button,
   title: "Components/Button",
   parameters: {
     componentSubtitle:
       "심플한 버튼입니다. 아이콘을 추가 할 수 있으며, 임의의 색을 설정할 수 있습니다.",
-  },
-  argTypes: {
-    variants: {
-      color: {
-        options: ["primary", "secondary"],
-        control: { type: "select" },
-      },
-    },
   },
 } as ComponentMeta<typeof Button>;
 
@@ -44,16 +36,30 @@ Secondary.args = {
   children: "버튼",
 };
 
-export const ButtonWithIcon = Template.bind({});
-ButtonWithIcon.parameters = {
+export const ButtonWithLeadingIcon = Template.bind({});
+ButtonWithLeadingIcon.parameters = {
   docs: {
     storyDescription: "test",
   },
 };
-ButtonWithIcon.args = {
+ButtonWithLeadingIcon.args = {
   variants: {
     color: "primary",
   },
   children: "추가",
-  icon: <FiPlus />,
+  leadingIcon: <FiPlus />,
+};
+
+export const ButtonWithTrailingIcon = Template.bind({});
+ButtonWithTrailingIcon.parameters = {
+  docs: {
+    storyDescription: "test",
+  },
+};
+ButtonWithTrailingIcon.args = {
+  variants: {
+    color: "primary",
+  },
+  children: "전송",
+  trailingIcon: <FiSend />,
 };

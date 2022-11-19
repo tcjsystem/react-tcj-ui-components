@@ -1,7 +1,8 @@
 import { button, ButtonVariants } from "./style.css";
 
 export interface ButtonProps {
-  icon?: React.ReactNode;
+  leadingIcon?: React.ReactNode;
+  trailingIcon?: React.ReactNode;
   variants: ButtonVariants;
   children: React.ReactNode;
   color?: string;
@@ -9,8 +10,9 @@ export interface ButtonProps {
 }
 
 export default function Button({
-  icon,
   variants,
+  leadingIcon,
+  trailingIcon,
   children,
   color,
   backgroundColor,
@@ -23,8 +25,9 @@ export default function Button({
         backgroundColor,
       }}
     >
-      {icon}
+      {leadingIcon}
       {children}
+      {trailingIcon}
     </button>
   );
 }

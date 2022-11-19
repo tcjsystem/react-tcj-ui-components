@@ -12,6 +12,10 @@ export const themeVars = createGlobalThemeContract(
       secondary: {
         default: "",
       },
+      shadow: {
+        default: "",
+        hover: "",
+      },
       text: {
         50: "",
         100: "",
@@ -49,6 +53,10 @@ createGlobalTheme('[data-theme="light"]', themeVars, {
     secondary: {
       default: "#14b8a6",
     },
+    shadow: {
+      default: "0 2px 4px 0 #A3A3A3",
+      hover: "0 4px 8px 0 #A3A3A3",
+    },
     text: {
       50: "#FAFAFA",
       100: "#F5F5F5",
@@ -83,6 +91,10 @@ createGlobalTheme('[data-theme="dark"]', themeVars, {
     },
     secondary: {
       default: "#2dd4bf",
+    },
+    shadow: {
+      default: "0 4px 8px 0 #000000",
+      hover: "0 8px 16px 0 #000000",
     },
     text: {
       50: "#171717",

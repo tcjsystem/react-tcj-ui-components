@@ -1,13 +1,11 @@
 import { recipe, RecipeVariants } from "@vanilla-extract/recipes";
-import { fontVars } from "../theme/size.css";
-import { themeVars } from "../theme/theme.css";
-import { transitionVars } from "../theme/transition.css";
+import { fontVars } from "../../theme/size.css";
+import { themeVars } from "../../theme/theme.css";
+import { transitionVars } from "../../theme/transition.css";
 
 export const button = recipe({
   base: {
-    fontFamily: "Pretendard",
     color: themeVars.color.text[100],
-    borderRadius: "0.625rem",
     borderStyle: "none",
     cursor: "pointer",
     fontWeight: 500,
@@ -20,6 +18,10 @@ export const button = recipe({
     alignItems: "center",
     gap: "0.5rem",
     transition: transitionVars.short,
+    boxShadow: themeVars.color.shadow.default,
+    ":hover": {
+      boxShadow: themeVars.color.shadow.hover,
+    },
   },
   variants: {
     color: {
@@ -30,9 +32,27 @@ export const button = recipe({
         backgroundColor: themeVars.color.secondary.default,
       },
     },
+    borderRadius: {
+      default: {
+        borderRadius: "0.5rem",
+      },
+      rounded: {
+        borderRadius: "50%",
+      },
+    },
+    padding: {
+      default: {
+        padding: "0.5rem 0.875rem",
+      },
+      rounded: {
+        padding: "0.5rem",
+      },
+    },
   },
   defaultVariants: {
     color: "primary",
+    borderRadius: "default",
+    padding: "default",
   },
 });
 

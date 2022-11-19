@@ -1,10 +1,10 @@
 import { createSprinkles, defineProperties } from "@vanilla-extract/sprinkles";
 const space = {
   none: 0,
-  xs: "0.25rem",
-  sm: "0.5rem",
-  md: "0.75rem",
-  lg: "1rem",
+  xs: "0.5rem",
+  sm: "0.75rem",
+  md: "1rem",
+  lg: "1.5rem",
 };
 
 const responsiveProperties = defineProperties({
@@ -30,7 +30,6 @@ const responsiveProperties = defineProperties({
     paddingBottom: space,
     paddingLeft: space,
     paddingRight: space,
-    fontSize: space,
   },
   shorthands: {
     padding: ["paddingTop", "paddingBottom", "paddingLeft", "paddingRight"],
