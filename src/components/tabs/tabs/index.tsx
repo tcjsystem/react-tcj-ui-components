@@ -1,6 +1,5 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import { TabProps } from "../tab";
-import { useDrawerZIndex } from "../../../core/hooks/useDrawerZIndex";
 import * as styles from "./styles.css";
 import {
   useSpring,
@@ -29,9 +28,9 @@ export default function Tabs({
     x: 0,
     width: 0,
     config: {
-      duration: 70,
-      friction: 2,
-      bounce: 20,
+      friction: 23,
+      mass: 2,
+      tension: 100,
     },
   }));
 
@@ -39,21 +38,17 @@ export default function Tabs({
     ref: tabPanelRefs,
     from: {
       opacity: 0,
-      transform: isSlideToRight
-        ? "translate3d(100%,0,0)"
-        : "translate3d(-100%, 0, 0)",
+      transform: isSlideToRight ? "translateX(100%)" : "translateX(-100%)",
     },
-    enter: { opacity: 1, transform: "translate3d(0%,0,0)" },
+    enter: { opacity: 1, transform: "translateX(0%)" },
     leave: {
       opacity: 0,
-      transform: isSlideToRight
-        ? "translate3d(-100%,0,0)"
-        : "translate3d(100%, 0, 0)",
+      transform: isSlideToRight ? "translateX(-100%)" : "translateX(100%)",
     },
     config: {
-      friction: 14,
-      mass: 1,
-      tension: 120,
+      friction: 23,
+      mass: 2,
+      tension: 100,
     },
   });
 
@@ -78,10 +73,9 @@ export default function Tabs({
   }, [selectedIndex]);
 
   useEffect(() => {
-    let checkedDefaultIndex = 0;
-    if (defaultIndex && defaultIndex < children.length - 1) {
-      checkedDefaultIndex = defaultIndex;
-    }
+    let checkedDefaultIndex =
+      defaultIndex && defaultIndex < children.length - 1 ? defaultIndex : 0;
+
     setSelectedIndex(checkedDefaultIndex);
     indicatorSpringApi.start({
       x: tabRefs.current[checkedDefaultIndex]?.offsetLeft,
@@ -90,7 +84,7 @@ export default function Tabs({
   }, [tabRefs]);
 
   return (
-    <div>
+    <div style={{ overflowX: "hidden" }}>
       <div ref={tabContainerRef} className={styles.tabs}>
         {children.map((tab, index) => (
           <div
@@ -119,13 +113,14 @@ export default function Tabs({
           style={{ ...indicatorSpring, borderColor: selectedColor }}
         />
       </div>
-      <div style={{ display: "flex" }}>
-        {tabPanelTransition((style, i) => (
-          <animated.div style={{ ...style, position: "absolute" }}>
-            {children[i]}
-          </animated.div>
-        ))}
-      </div>
+      {tabPanelTransition((style, i) => (
+        <animated.div
+          className={styles.tabBody}
+          style={{ ...style, position: "absolute" }}
+        >
+          {children[i]}
+        </animated.div>
+      ))}
     </div>
   );
 }

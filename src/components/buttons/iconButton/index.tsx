@@ -1,18 +1,29 @@
-import { button, ButtonVariants } from "../button/style.css";
+import { assignInlineVars } from "@vanilla-extract/dynamic";
+import { useThemeMode } from "../../../core/hooks/useThemeMode";
+import { ColorPaletteType } from "../../../core/styles/theme.css";
+import {
+  button,
+  ButtonVariants,
+  customColorActive,
+  customColorBorder,
+  customColorDefault,
+  customColorHover,
+} from "../button/style.css";
 
 export interface IconButtonProps {
   icon?: React.ReactNode;
   variants: ButtonVariants;
   color?: string;
-  backgroundColor?: string;
+  customColorPalette?: ColorPaletteType;
 }
 
 export default function IconButton({
   icon,
   variants,
   color,
-  backgroundColor,
+  customColorPalette,
 }: IconButtonProps) {
+  const { theme } = useThemeMode();
   return (
     <button
       className={button({
@@ -20,7 +31,20 @@ export default function IconButton({
         borderRadius: "rounded",
         padding: "rounded",
       })}
-      style={{ color, backgroundColor }}
+      style={
+        variants?.color === "custom" && customColorPalette
+          ? assignInlineVars({
+              [customColorBorder]:
+                customColorPalette[theme === "light" ? 700 : 600],
+              [customColorDefault]:
+                customColorPalette[theme === "light" ? 600 : 500],
+              [customColorHover]:
+                customColorPalette[theme === "light" ? 500 : 400],
+              [customColorActive]:
+                customColorPalette[theme === "light" ? 400 : 300],
+            })
+          : undefined
+      }
     >
       {icon}
     </button>

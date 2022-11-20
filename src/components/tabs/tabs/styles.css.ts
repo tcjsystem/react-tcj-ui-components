@@ -1,6 +1,7 @@
 import { style } from "@vanilla-extract/css";
 import { recipe } from "@vanilla-extract/recipes";
-import { themeVars } from "src/components/theme/theme.css";
+import { themeVars } from "src/core/styles/theme.css";
+import { transitionVars } from "src/core/styles/transition.css";
 
 export const tabs = style({
   position: "relative",
@@ -8,7 +9,7 @@ export const tabs = style({
   borderBottom: `1px solid ${themeVars.color.background[200]}`,
   paddingBottom: "0.5rem",
   pointerEvents: "all",
-  overflowX: "auto",
+  overflowX: "hidden",
   "::-webkit-scrollbar": {
     display: "none",
   },
@@ -22,8 +23,15 @@ export const tabHead = recipe({
     padding: "0.25rem 0.75rem",
     justifyContent: "center",
     userSelect: "none",
-    transition: "all 0.3s",
-    color: themeVars.color.text[500],
+    transition: transitionVars.short,
+    color: themeVars.color.text[400],
+    ":hover": {
+      transform: "scale(1.01)",
+      color: themeVars.color.text[500],
+    },
+    ":active": {
+      transform: "scale(0.99)",
+    },
   },
   variants: {
     selected: {
@@ -40,9 +48,10 @@ export const indicator = style({
   padding: "0.5rem",
   borderRadius: "1px",
   borderBottom: `3px solid ${themeVars.color.primary.default}`,
-  transition: "all 0.3s ease-in-out",
 });
 
 export const tabBody = style({
   padding: "1rem",
+  width: "calc(100% - 4rem)",
+  overflowX: "hidden",
 });

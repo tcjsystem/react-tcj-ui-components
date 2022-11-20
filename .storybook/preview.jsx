@@ -3,7 +3,7 @@ import { SHARED_STATE_CHANGED, GLOBALS_UPDATED } from "@storybook/core-events";
 import { useEffect } from "react";
 
 const LIGHT_THEME_VALUE = "#FAFAFA";
-const DARK_THEME_VALUE = "#262626";
+const DARK_THEME_VALUE = "#404040";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -18,6 +18,9 @@ export const parameters = {
       { name: "light", value: LIGHT_THEME_VALUE },
       { name: "dark", value: DARK_THEME_VALUE },
     ],
+  },
+  docs: {
+    iframeHeight: 2000,
   },
 };
 
