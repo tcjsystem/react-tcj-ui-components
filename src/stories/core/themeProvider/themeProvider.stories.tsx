@@ -1,6 +1,11 @@
-import ThemeProvider from "../../../core/providers/themeProvider";
+import ThemeProvider from "../../../components/provider/themeProvider";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Button } from "../../../components/";
+import { colorPaletteVars } from "../../../core/styles/colorPalette.css";
+import Card from "../../../components/data/cards/base";
+import InfoCardRow from "../../../components/data/cards/contents/infoCardRow";
+import { ThemeType, useTheme } from "../../../core/hooks/useTheme";
+import Select from "../../../components/form/select";
 export default {
   component: ThemeProvider,
   title: "Core/ThemeProvider",
@@ -11,17 +16,95 @@ export default {
 } as ComponentMeta<typeof ThemeProvider>;
 
 const Template: ComponentStory<typeof ThemeProvider> = (args) => (
-  <ThemeProvider {...args}>
-    <Button>Button</Button>
-  </ThemeProvider>
+  <ThemeProvider {...args} />
 );
 
-export const Basic = Template.bind({});
+export const ThemeSelect = () => {
+  const { changeCurrentTheme } = useTheme();
+  return (
+    <div style={{ marginBottom: "1rem" }}>
+      <Select
+        onValueChange={(value) => changeCurrentTheme(value as ThemeType)}
+        items={[
+          {
+            value: "light",
+            label: "라이트모드",
+          },
+          {
+            value: "dark",
+            label: "다크모드",
+          },
+        ]}
+      />
+    </div>
+  );
+};
 
-Basic.args = {};
+export const Default = Template.bind({});
+Default.args = {
+  children: (
+    <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+      <div>
+        <ThemeSelect />
+      </div>
+      <Card
+        title="기본 테마"
+        actions={
+          <Button
+            variants={{
+              color: "primary",
+            }}
+          >
+            추가
+          </Button>
+        }
+      >
+        <InfoCardRow subject="기본">테마</InfoCardRow>
+      </Card>
+    </div>
+  ),
+};
 
-export const ChangePrimaryColor = Template.bind({});
+export const CustomTheme = Template.bind({});
 
-ChangePrimaryColor.args = {
-  primaryColor: "#c41414",
+CustomTheme.args = {
+  theme: {
+    color: {
+      background: colorPaletteVars.amber,
+      text: colorPaletteVars.red,
+      primary: colorPaletteVars.emerald,
+      secondary: colorPaletteVars.gray,
+      primaryStatus: {
+        active: colorPaletteVars.emerald[300],
+        default: colorPaletteVars.emerald[500],
+        hover: colorPaletteVars.emerald[400],
+      },
+      secondaryStatus: {
+        active: colorPaletteVars.emerald[100],
+        default: colorPaletteVars.emerald[200],
+        hover: colorPaletteVars.emerald[300],
+      },
+      shadow: {
+        active: colorPaletteVars.emerald[100],
+        default: colorPaletteVars.emerald[200],
+        hover: colorPaletteVars.emerald[300],
+      },
+    },
+  },
+  children: (
+    <Card
+      title="커스텀 테마"
+      actions={
+        <Button
+          variants={{
+            color: "primary",
+          }}
+        >
+          추가
+        </Button>
+      }
+    >
+      <InfoCardRow subject="커스텀">테마</InfoCardRow>
+    </Card>
+  ),
 };
