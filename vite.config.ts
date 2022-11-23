@@ -11,13 +11,13 @@ export default defineConfig({
       // Exclude storybook stories
       exclude: /\.stories\.(t|j)sx?$/,
       // Only .tsx files
-      include: "**/*.tsx",
+      include: ["**/*.tsx", "**/*.ts"],
       jsxRuntime: "classic",
     }),
     tsConfigPaths(),
     vanillaExtractPlugin(),
     dts({
-      include: ["src/components"],
+      include: ["src"],
       insertTypesEntry: true,
       skipDiagnostics: true,
     }),
@@ -25,7 +25,7 @@ export default defineConfig({
   build: {
     minify: false,
     lib: {
-      entry: resolve("src", "components/index.ts"),
+      entry: resolve("src", "index.ts"),
       name: "react-tcj-ui-components",
       formats: ["es", "umd"],
       fileName: (format) => `react-tcj-ui-components.${format}.js`,

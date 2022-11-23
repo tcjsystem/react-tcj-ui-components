@@ -54,25 +54,25 @@ export const button = recipe({
         },
       },
       primary: {
-        backgroundColor: themeVars.color.primaryStatus.default,
         border: `1px solid ${themeVars.color.primary[700]}`,
+        backgroundColor: themeVars.color.primary[600],
         ":hover": {
-          backgroundColor: themeVars.color.primaryStatus.hover,
+          backgroundColor: themeVars.color.primary[500],
         },
         ":active": {
-          backgroundColor: themeVars.color.primaryStatus.active,
-          borderColor: themeVars.color.primaryStatus.hover,
+          backgroundColor: themeVars.color.primary[400],
+          borderColor: themeVars.color.primary[500],
         },
       },
       secondary: {
-        backgroundColor: themeVars.color.secondaryStatus.default,
         border: `1px solid ${themeVars.color.secondary[700]}`,
+        backgroundColor: themeVars.color.secondary[600],
         ":hover": {
-          backgroundColor: themeVars.color.secondaryStatus.hover,
+          backgroundColor: themeVars.color.secondary[500],
         },
         ":active": {
-          backgroundColor: themeVars.color.secondaryStatus.active,
-          borderColor: themeVars.color.secondaryStatus.hover,
+          backgroundColor: themeVars.color.secondary[400],
+          borderColor: themeVars.color.secondary[500],
         },
       },
       custom: {

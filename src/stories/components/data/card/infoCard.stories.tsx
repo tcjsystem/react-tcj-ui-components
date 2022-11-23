@@ -3,7 +3,6 @@ import { FiPlus } from "react-icons/fi";
 import { Button } from "../../../../components";
 import Card from "../../../../components/data/cards/base";
 import InfoCardRow from "../../../../components/data/cards/contents/infoCardRow";
-import InfoContents from "../../../../components/data/cards/contents/infoCardRow";
 export default {
   component: Card,
   title: "Components/Data/Card/InfoCard",

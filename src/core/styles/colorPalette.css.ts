@@ -1,9 +1,30 @@
 import { createGlobalTheme } from "@vanilla-extract/css";
 
 export const colorPaletteVars = createGlobalTheme(":root", {
-  transparent: "transparent",
-  black: "#000000",
-  white: "#FFFFFF",
+  allBlack: {
+    50: "#000000",
+    100: "#000000",
+    200: "#000000",
+    300: "#000000",
+    400: "#000000",
+    500: "#000000",
+    600: "#000000",
+    700: "#000000",
+    800: "#000000",
+    900: "#000000",
+  },
+  allWhite: {
+    50: "#FFFFFF",
+    100: "#FFFFFF",
+    200: "#FFFFFF",
+    300: "#FFFFFF",
+    400: "#FFFFFF",
+    500: "#FFFFFF",
+    600: "#FFFFFF",
+    700: "#FFFFFF",
+    800: "#FFFFFF",
+    900: "#FFFFFF",
+  },
   slate: {
     50: "#F8FAFC",
     100: "#F1F5F9",
@@ -329,3 +350,5 @@ export const colorPaletteVars = createGlobalTheme(":root", {
     900: "#881337",
   },
 });
+
+export type ColorPalettes = keyof typeof colorPaletteVars;

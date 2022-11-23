@@ -13,17 +13,15 @@ import {
 export interface IconButtonProps {
   icon?: React.ReactNode;
   variants: ButtonVariants;
-  color?: string;
   customColorPalette?: ColorPaletteType;
 }
 
 export default function IconButton({
   icon,
   variants,
-  color,
   customColorPalette,
 }: IconButtonProps) {
-  const { theme } = useTheme();
+  const { currentTheme } = useTheme();
   return (
     <button
       className={button({
@@ -35,13 +33,13 @@ export default function IconButton({
         variants?.color === "custom" && customColorPalette
           ? assignInlineVars({
               [customColorBorder]:
-                customColorPalette[theme === "light" ? 700 : 600],
+                customColorPalette[currentTheme === "light" ? 700 : 600],
               [customColorDefault]:
-                customColorPalette[theme === "light" ? 600 : 500],
+                customColorPalette[currentTheme === "light" ? 600 : 500],
               [customColorHover]:
-                customColorPalette[theme === "light" ? 500 : 400],
+                customColorPalette[currentTheme === "light" ? 500 : 400],
               [customColorActive]:
-                customColorPalette[theme === "light" ? 400 : 300],
+                customColorPalette[currentTheme === "light" ? 400 : 300],
             })
           : undefined
       }

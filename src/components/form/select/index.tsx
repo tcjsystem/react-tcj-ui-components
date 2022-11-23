@@ -14,15 +14,19 @@ interface SelectProps {
   items: SelectItemProps[];
   placeholder?: string;
   onValueChange?: (value: string) => void;
+  value?: string;
+  defaultValue?: string;
 }
 
 export default function Select({
   items,
   placeholder = "select...",
   onValueChange,
+  value,
+  defaultValue,
 }: SelectProps) {
   return (
-    <r.Root onValueChange={onValueChange}>
+    <r.Root onValueChange={onValueChange} value={value}>
       <r.Trigger className={styles.selectTrigger}>
         <r.Value placeholder={placeholder} />
         <r.Icon className={styles.selectIcon}>

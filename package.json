@@ -1,6 +1,6 @@
 {
   "name": "@tcjsystem/react-tcj-ui-components",
-  "version": "0.0.1",
+  "version": "0.0.3d",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

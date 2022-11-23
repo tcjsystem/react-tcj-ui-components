@@ -1,6 +1,8 @@
 import {
   createGlobalTheme,
   createGlobalThemeContract,
+  createTheme,
+  createThemeContract,
   globalStyle,
 } from "@vanilla-extract/css";
 import { colorPaletteVars } from "./colorPalette.css";
@@ -24,19 +26,17 @@ const colorStatusVar = {
   active: "",
 };
 
-const colorVar = {
+const colorThemeVars = {
   primary: colorPaletteVar,
   secondary: colorPaletteVar,
   text: colorPaletteVar,
   background: colorPaletteVar,
-  primaryStatus: colorStatusVar,
-  secondaryStatus: colorStatusVar,
-  shadow: colorStatusVar,
+  shadow: colorPaletteVar,
 };
 
 const themeVars = createGlobalThemeContract(
   {
-    color: colorVar,
+    color: colorThemeVars,
   },
   (_, path) => ["tcj", ...path].join("-")
 );
@@ -49,55 +49,34 @@ globalStyle(":root", {
   fontFamily: "pretendard",
 });
 
-createGlobalTheme('[data-theme="light"]', themeVars, {
+export const lightThemeVars = {
   color: {
     text: colorPaletteVars.neutral,
     background: colorPaletteVars.neutral,
     primary: colorPaletteVars.indigo,
     secondary: colorPaletteVars.emerald,
-    primaryStatus: {
-      default: themeVars.color.primary[600],
-      hover: themeVars.color.primary[500],
-      active: themeVars.color.primary[400],
-    },
-    secondaryStatus: {
-      default: themeVars.color.secondary[600],
-      hover: themeVars.color.secondary[500],
-      active: themeVars.color.secondary[400],
-    },
-    shadow: {
-      default: themeVars.color.background[400],
-      hover: themeVars.color.background[500],
-      active: themeVars.color.background[600],
-    },
+    shadow: colorPaletteVars.neutral,
   },
-});
+};
 
-createGlobalTheme('[data-theme="dark"]', themeVars, {
+export const darkThemeVars = {
   color: {
     text: colorPaletteVars.neutralReverse,
     background: colorPaletteVars.neutralReverse,
     primary: colorPaletteVars.indigo,
     secondary: colorPaletteVars.emerald,
-    primaryStatus: {
-      default: themeVars.color.primary[500],
-      hover: themeVars.color.primary[400],
-      active: themeVars.color.primary[300],
-    },
-    secondaryStatus: {
-      default: themeVars.color.secondary[500],
-      hover: themeVars.color.secondary[400],
-      active: themeVars.color.secondary[300],
-    },
-    shadow: {
-      default: colorPaletteVars.black,
-      hover: colorPaletteVars.black,
-      active: colorPaletteVars.black,
-    },
+    shadow: colorPaletteVars.allBlack,
   },
-});
+};
 
+createGlobalTheme('[data-theme="light"]', themeVars, lightThemeVars);
+
+createGlobalTheme('[data-theme="dark"]', themeVars, darkThemeVars);
+
+createGlobalTheme('[data-theme="custom"]', themeVars, lightThemeVars);
 export { themeVars };
-export type ColorPaletteType = typeof colorPaletteVar;
+export type ColorPaletteType = typeof colorPaletteVars.amber;
 export type ColorStatusType = typeof colorStatusVar;
+export type ColorThemeVarsType = typeof colorThemeVars;
 export type ThemeVarsType = typeof themeVars;
+export type ThemeVarsColorKey = keyof ColorThemeVarsType;

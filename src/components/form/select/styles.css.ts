@@ -8,7 +8,7 @@ export const selectTrigger = style([
     display: "inline-flex",
     placeItems: "center",
     paddingX: "1",
-    paddingY: "0.5",
+    paddingY: "1",
     fontSize: "body2",
     borderRadius: "0.5",
   }),
@@ -18,13 +18,15 @@ export const selectTrigger = style([
         color: themeVars.color.text[500],
       },
     },
+    width: "100%",
     height: "1rem",
     gap: "0.5rem",
+    boxSizing: "border-box",
     backgroundColor: themeVars.color.background[100],
     color: themeVars.color.text[700],
-    boxShadow: `0 2px 4px ${themeVars.color.shadow.default}`,
+    boxShadow: `0px 2px 4px ${themeVars.color.shadow[300]}`,
     ":hover": {
-      backgroundColor: themeVars.color.background[50],
+      boxShadow: `0 2px 4px ${themeVars.color.shadow[500]}`,
     },
     ":focus": {
       boxShadow: `0 0 0 2px ${themeVars.color.primary[400]}`,
@@ -47,7 +49,7 @@ export const selectContent = style({
   overflow: "hidden",
   backgroundColor: themeVars.color.background[100],
   borderRadius: "0.5rem",
-  boxShadow: `0 2px 4px ${themeVars.color.shadow.active}`,
+  boxShadow: `0 2px 4px ${themeVars.color.shadow[400]}`,
 });
 
 export const selectViewport = style({
