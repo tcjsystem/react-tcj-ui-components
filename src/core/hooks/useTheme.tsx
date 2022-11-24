@@ -37,6 +37,7 @@ export const useTheme = () => {
           const parsedTheme = JSON.parse(
             localStorageCustomTheme
           ) as ThemeVarsType;
+          console.log(parsedTheme.font);
           setElementVars(document.documentElement, themeVars, parsedTheme);
           setCurrentCustomTheme(parsedTheme);
           return value;
@@ -67,6 +68,11 @@ export const useTheme = () => {
           const localStorageCustomTheme =
             localStorage.getItem(DATA_CUSTOM_THEME);
           if (!localStorageCustomTheme) {
+            localStorage.setItem(
+              DATA_CUSTOM_THEME,
+              JSON.stringify(lightThemeVars)
+            );
+            setCurrentCustomTheme(lightThemeVars as ThemeVarsType);
             return lightThemeVars;
           } else {
             const parsedTheme = JSON.parse(
@@ -88,14 +94,8 @@ export const useTheme = () => {
     key: ThemeVarsColorKey,
     value: ColorPalettes
   ) => {
-    if (currentTheme !== "custom") return;
-    let localStoragedCustomTheme = localStorage.getItem(DATA_CUSTOM_THEME);
-    if (!localStoragedCustomTheme) {
-      return;
-    } else {
-      let parsedCustomTheme: ThemeVarsType = JSON.parse(
-        localStoragedCustomTheme
-      );
+    let parsedCustomTheme = _getParsedLocalStorageCustomTheme();
+    if (parsedCustomTheme) {
       parsedCustomTheme.color[key] = colorPaletteVars[value];
       localStorage.setItem(
         DATA_CUSTOM_THEME,
@@ -106,10 +106,42 @@ export const useTheme = () => {
     }
   };
 
+  const changeCustomFontFamily = (value: string) => {
+    let parsedCustomTheme = _getParsedLocalStorageCustomTheme();
+    console.log(parsedCustomTheme);
+    if (parsedCustomTheme) {
+      parsedCustomTheme.font = value as any;
+      localStorage.setItem(
+        DATA_CUSTOM_THEME,
+        JSON.stringify(parsedCustomTheme)
+      );
+      setCurrentCustomTheme(parsedCustomTheme);
+      setElementVars(document.documentElement, themeVars, parsedCustomTheme);
+    }
+  };
+
+  const resetCustomTheme = () => {
+    localStorage.setItem(DATA_CUSTOM_THEME, JSON.stringify(lightThemeVars));
+    setCurrentCustomTheme(lightThemeVars as ThemeVarsType);
+    setElementVars(document.documentElement, themeVars, lightThemeVars);
+  };
+
+  const _getParsedLocalStorageCustomTheme = (): ThemeVarsType | undefined => {
+    if (currentTheme !== "custom") return;
+    let localStoragedCustomTheme = localStorage.getItem(DATA_CUSTOM_THEME);
+    if (!localStoragedCustomTheme) {
+      return;
+    } else {
+      return JSON.parse(localStoragedCustomTheme) as ThemeVarsType;
+    }
+  };
+
   return {
     currentTheme,
     changeCurrentTheme,
     changeCustomThemeColorProperty,
     currentCustomTheme,
+    resetCustomTheme,
+    changeCustomFontFamily,
   };
 };

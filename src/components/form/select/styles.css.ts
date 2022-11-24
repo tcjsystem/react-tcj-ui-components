@@ -41,7 +41,7 @@ export const selectIcon = style([
     alignItems: "center",
   }),
   {
-    color: themeVars.color.primary[300],
+    color: themeVars.color.primary[500],
   },
 ]);
 

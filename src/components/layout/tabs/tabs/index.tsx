@@ -28,9 +28,9 @@ export default function Tabs({
     x: 0,
     width: 0,
     config: {
-      friction: 23,
-      mass: 2,
-      tension: 100,
+      friction: 16,
+      mass: 1,
+      tension: 160,
     },
   }));
 
@@ -46,9 +46,9 @@ export default function Tabs({
       transform: isSlideToRight ? "translateX(-100%)" : "translateX(100%)",
     },
     config: {
-      friction: 23,
-      mass: 2,
-      tension: 100,
+      friction: 16,
+      mass: 1,
+      tension: 160,
     },
   });
 

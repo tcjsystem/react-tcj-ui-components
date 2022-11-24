@@ -1,5 +1,5 @@
 import { style } from "@vanilla-extract/css";
-import { themeVars } from "../../../core/styles/theme.css";
+import { themeVars } from "../../../../core/styles/theme.css";
 
 export const container = style({
   width: "16rem",

@@ -7,6 +7,9 @@ import {
 } from "../../../core/styles/colorPalette.css";
 import Card from "../../../components/data/cards/base";
 import { Button } from "../../../components";
+import { setElementVars } from "@vanilla-extract/dynamic";
+import { lightThemeVars, themeVars } from "../../../core/styles/theme.css";
+import { globalStyle } from "@vanilla-extract/css";
 export default {
   component: Select,
   title: "Core/Hooks/useTheme",
@@ -18,7 +21,9 @@ const Template: ComponentStory<typeof Select> = (args) => {
     currentTheme,
     changeCurrentTheme,
     changeCustomThemeColorProperty,
+    changeCustomFontFamily,
     currentCustomTheme,
+    resetCustomTheme,
   } = useTheme();
   return (
     <Card
@@ -29,8 +34,9 @@ const Template: ComponentStory<typeof Select> = (args) => {
           variants={{
             color: "secondary",
           }}
+          onClick={() => resetCustomTheme()}
         >
-          Secondary
+          초기화
         </Button>
       }
     >
@@ -236,6 +242,48 @@ const Template: ComponentStory<typeof Select> = (args) => {
                   label: item,
                   value: item,
                 }))}
+              />
+            </div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "flex-start",
+                alignItems: "center",
+                gap: "1rem",
+                width: "100%",
+                boxSizing: "border-box",
+                padding: "1rem 0",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  boxSizing: "border-box",
+                  minWidth: "8rem",
+                }}
+              >
+                font family
+              </div>
+              <Select
+                onValueChange={(value) => {
+                  changeCustomFontFamily(value);
+                }}
+                value={currentCustomTheme?.font}
+                items={[
+                  {
+                    label: "Pretendard",
+                    value: "Pretendard",
+                  },
+                  {
+                    label: "Noto Sans KR",
+                    value: "Noto Sans KR",
+                  },
+                  {
+                    label: "Roboto Mono",
+                    value: "Roboto Mono",
+                  },
+                ]}
               />
             </div>
           </>

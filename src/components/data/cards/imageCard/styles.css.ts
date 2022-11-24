@@ -5,7 +5,7 @@ export const container = style({
   backgroundColor: themeVars.color.background[100],
   borderRadius: "0.5rem",
   border: `1px solid ${themeVars.color.background[200]}`,
-  boxShadow: themeVars.color.shadow.default,
+  boxShadow: themeVars.color.background[200],
   height: "100%",
 });
 

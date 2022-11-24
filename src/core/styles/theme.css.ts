@@ -5,6 +5,7 @@ import {
   createThemeContract,
   globalStyle,
 } from "@vanilla-extract/css";
+import { string } from "ts-pattern/dist/patterns";
 import { colorPaletteVars } from "./colorPalette.css";
 
 const colorPaletteVar = {
@@ -37,16 +38,13 @@ const colorThemeVars = {
 const themeVars = createGlobalThemeContract(
   {
     color: colorThemeVars,
+    font: "",
   },
   (_, path) => ["tcj", ...path].join("-")
 );
 
 globalStyle("button", {
   all: "unset",
-});
-
-globalStyle(":root", {
-  fontFamily: "pretendard",
 });
 
 export const lightThemeVars = {
@@ -57,6 +55,7 @@ export const lightThemeVars = {
     secondary: colorPaletteVars.emerald,
     shadow: colorPaletteVars.neutral,
   },
+  font: "Pretendard",
 };
 
 export const darkThemeVars = {
@@ -67,7 +66,12 @@ export const darkThemeVars = {
     secondary: colorPaletteVars.emerald,
     shadow: colorPaletteVars.allBlack,
   },
+  font: "Pretendard",
 };
+
+globalStyle(":root", {
+  fontFamily: themeVars.font,
+});
 
 createGlobalTheme('[data-theme="light"]', themeVars, lightThemeVars);
 
