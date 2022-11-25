@@ -8,4 +8,5 @@ export const container = style({
   width: "max-content",
   display: "flex",
   borderRadius: "0.5rem",
+  boxShadow: `0 2px 4px ${themeVars.color.shadow[300]}`,
 });

@@ -1,7 +1,7 @@
-import { useTransition, animated, config, useSpring } from "@react-spring/web";
 import { useRef, useState } from "react";
-import { FiChevronDown, FiDatabase, FiShoppingBag } from "react-icons/fi";
+import { FiCalendar } from "react-icons/fi";
 import SidebarItem from "./sidebarItem";
+import SidebarItemGroup from "./sidebarItemGroup";
 import * as styles from "./styles.css";
 
 interface SidebarContainerProps {
@@ -10,12 +10,19 @@ interface SidebarContainerProps {
 }
 
 export default function Sidebar({ header, items }: SidebarContainerProps) {
+  const [openGroups, setOpenGroups] = useState<string[]>([])
   return (
     <div className={styles.container}>
       <div className={styles.header}>{header}</div>
       {/* {items} */}
-      <SidebarItem />
-      <SidebarItem />
+      <SidebarItemGroup id="test" isOpen={openGroups.includes("test")} toggleFn={() => {
+        setOpenGroups((prev) => [...prev, "test"])
+      }}
+        icon={<FiCalendar />}
+        title="test"
+      >
+        123
+      </SidebarItemGroup>
     </div>
   );
 }

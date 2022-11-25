@@ -2,14 +2,14 @@ import { setElementVars } from "@vanilla-extract/dynamic";
 import { atom, useAtom } from "jotai";
 import { useEffect, useState } from "react";
 import { match } from "ts-pattern";
-import { ColorPalettes, colorPaletteVars } from "../styles/colorPalette.css";
+import { ColorPalettes, colorPaletteVars } from "../../styles/colorPalette.css";
 import {
   darkThemeVars,
   lightThemeVars,
   themeVars,
   ThemeVarsColorKey,
   ThemeVarsType,
-} from "../styles/theme.css";
+} from "../../styles/theme.css";
 
 const DATA_THEME = "data-theme";
 const DATA_CUSTOM_THEME = "data-custom-theme";

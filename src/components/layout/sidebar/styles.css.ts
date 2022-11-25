@@ -13,11 +13,12 @@ export const container = style({
 export const header = style({
   display: "flex",
   justifyContent: "center",
-  alignItems: "cneter",
-  fontWeight: 500,
+  alignItems: "center",
+  fontWeight: 600,
   fontSize: "1rem",
   padding: "1rem",
   height: "2rem",
+  color: themeVars.color.text[700]
 });
 
 export const sidebarItem = style({

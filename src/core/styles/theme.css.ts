@@ -1,11 +1,8 @@
 import {
   createGlobalTheme,
   createGlobalThemeContract,
-  createTheme,
-  createThemeContract,
   globalStyle,
 } from "@vanilla-extract/css";
-import { string } from "ts-pattern/dist/patterns";
 import { colorPaletteVars } from "./colorPalette.css";
 
 const colorPaletteVar = {
@@ -33,6 +30,8 @@ const colorThemeVars = {
   text: colorPaletteVar,
   background: colorPaletteVar,
   shadow: colorPaletteVar,
+  error: colorPaletteVar,
+  warning: colorPaletteVar
 };
 
 const themeVars = createGlobalThemeContract(
@@ -47,16 +46,19 @@ globalStyle("button", {
   all: "unset",
 });
 
-export const lightThemeVars = {
+export const defaultThemeVars = {
   color: {
     text: colorPaletteVars.neutral,
-    background: colorPaletteVars.neutral,
+    background: colorPaletteVars.zinc,
     primary: colorPaletteVars.indigo,
     secondary: colorPaletteVars.emerald,
     shadow: colorPaletteVars.neutral,
+    error: colorPaletteVars.red,
+    warning: colorPaletteVars.yellow
   },
   font: "Pretendard",
 };
+export const lightThemeVars = defaultThemeVars;
 
 export const darkThemeVars = {
   color: {
@@ -65,6 +67,8 @@ export const darkThemeVars = {
     primary: colorPaletteVars.indigo,
     secondary: colorPaletteVars.emerald,
     shadow: colorPaletteVars.allBlack,
+    error: colorPaletteVars.red,
+    warning: colorPaletteVars.yellow
   },
   font: "Pretendard",
 };
@@ -82,5 +86,5 @@ export { themeVars };
 export type ColorPaletteType = typeof colorPaletteVars.amber;
 export type ColorStatusType = typeof colorStatusVar;
 export type ColorThemeVarsType = typeof colorThemeVars;
-export type ThemeVarsType = typeof themeVars;
+export type ThemeVarsType = typeof defaultThemeVars;
 export type ThemeVarsColorKey = keyof ColorThemeVarsType;

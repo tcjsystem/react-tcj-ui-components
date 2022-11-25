@@ -1,6 +1,6 @@
 import Button from "../../../../components/form/buttons/button/index";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { FiPlus, FiSend } from "react-icons/fi";
+import { FiLogIn, FiPlus, FiSend } from "react-icons/fi";
 import { colorPaletteVars } from "../../../../core/styles/colorPalette.css";
 export default {
   component: Button,
@@ -11,7 +11,8 @@ export default {
   },
 } as ComponentMeta<typeof Button>;
 
-const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
+const Template: ComponentStory<typeof Button> = (args) =>
+  <Button {...args} />
 
 export const Default = Template.bind({});
 
@@ -68,13 +69,13 @@ CustomColorPalette.args = {
   customColorPalette: colorPaletteVars.rose,
 };
 
-export const ButtonWithLeadingIcon = Template.bind({});
-ButtonWithLeadingIcon.parameters = {
+export const WithLeadingIcon = Template.bind({});
+WithLeadingIcon.parameters = {
   docs: {
     storyDescription: "버튼의 앞 쪽에 아이콘을 추가합니다.",
   },
 };
-ButtonWithLeadingIcon.args = {
+WithLeadingIcon.args = {
   variants: {
     color: "primary",
   },
@@ -82,16 +83,32 @@ ButtonWithLeadingIcon.args = {
   leadingIcon: <FiPlus />,
 };
 
-export const ButtonWithTrailingIcon = Template.bind({});
-ButtonWithTrailingIcon.parameters = {
+export const WithTrailingIcon = Template.bind({});
+WithTrailingIcon.parameters = {
   docs: {
     storyDescription: "버튼의 뒤 쪽에 아이콘을 추가합니다.",
   },
 };
-ButtonWithTrailingIcon.args = {
+WithTrailingIcon.args = {
   variants: {
     color: "primary",
   },
   children: "전송",
   trailingIcon: <FiSend />,
 };
+
+export const WithFullWidth = Template.bind({});
+WithFullWidth.parameters = {
+  docs: {
+    storyDescription: "버튼의 뒤 쪽에 아이콘을 추가합니다.",
+  },
+};
+WithFullWidth.args = {
+  variants: {
+    color: "primary",
+    width: "full"
+  },
+  children: "로그인",
+  leadingIcon: <FiLogIn />,
+};
+

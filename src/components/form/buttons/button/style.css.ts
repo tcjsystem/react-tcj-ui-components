@@ -17,7 +17,7 @@ export const button = recipe({
       display: "flex",
       placeItems: "center",
       gap: "0.5",
-      fontWeight: "regular",
+      fontWeight: "medium",
     }),
     {
       color: themeVars.color.text[100],
@@ -25,6 +25,8 @@ export const button = recipe({
       userSelect: "none",
       WebkitUserSelect: "none",
       transition: transitionVars.short,
+      boxSizing: "border-box",
+      boxShadow: `0 2px 4px ${themeVars.color.shadow[300]}`,
       selectors: {
         "ul > &:not(:last-child)": {
           borderTopRightRadius: 0,
@@ -37,6 +39,9 @@ export const button = recipe({
           boxShadow: "none",
         },
       },
+      ":hover": {
+        boxShadow: `0 4px 8px ${themeVars.color.shadow[300]}`,
+      }
     },
   ],
   variants: {
@@ -89,7 +94,7 @@ export const button = recipe({
     },
     borderRadius: {
       default: {
-        borderRadius: "0.5rem",
+        borderRadius: "0.625rem",
       },
       rounded: {
         borderRadius: "50%",
@@ -101,6 +106,12 @@ export const button = recipe({
         padding: "0.5rem",
       },
     },
+    width: {
+      full: {
+        width: "100%"
+      },
+      contentFit: {}
+    }
   },
   defaultVariants: {
     color: "default",

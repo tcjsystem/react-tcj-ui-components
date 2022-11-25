@@ -35,4 +35,4 @@ export const sidebarContent = style({
   height: "2.5rem",
 });
 
-export const sidebarChildren = style({});
+export const sidebarItems = style({});

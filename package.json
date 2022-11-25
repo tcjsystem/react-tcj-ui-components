@@ -1,6 +1,6 @@
 {
   "name": "@tcjsystem/react-tcj-ui-components",
-  "version": "0.0.3d",
+  "version": "0.0.3d-1",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -47,13 +47,6 @@
   "files": [
     "dist"
   ],
-  "exports": {
-    ".": {
-      "import": "./dist/react-tcj-ui-components.es.js",
-      "require": "./dist/react-tcj-ui-components.umd.js"
-    },
-    "./dist/style.css": "./dist/style.css"
-  },
   "main": "./dist/react-tcj-ui-components.umd.js",
   "module": "./dist/react-tcj-ui-componsnts.es.js",
   "types": "./dist/index.d.ts",
