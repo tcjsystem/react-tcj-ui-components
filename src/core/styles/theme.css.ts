@@ -3,7 +3,7 @@ import {
   createGlobalThemeContract,
   globalStyle,
 } from "@vanilla-extract/css";
-import { colorPaletteVars } from "./colorPalette.css";
+import { colorPaletteVars } from "./color-palette.css";
 
 const colorPaletteVar = {
   50: "",
@@ -31,7 +31,7 @@ const colorThemeVars = {
   background: colorPaletteVar,
   shadow: colorPaletteVar,
   error: colorPaletteVar,
-  warning: colorPaletteVar
+  warning: colorPaletteVar,
 };
 
 const themeVars = createGlobalThemeContract(
@@ -42,10 +42,6 @@ const themeVars = createGlobalThemeContract(
   (_, path) => ["tcj", ...path].join("-")
 );
 
-globalStyle("button", {
-  all: "unset",
-});
-
 export const defaultThemeVars = {
   color: {
     text: colorPaletteVars.neutral,
@@ -54,9 +50,9 @@ export const defaultThemeVars = {
     secondary: colorPaletteVars.emerald,
     shadow: colorPaletteVars.neutral,
     error: colorPaletteVars.red,
-    warning: colorPaletteVars.yellow
+    warning: colorPaletteVars.yellow,
   },
-  font: "Pretendard",
+  font: "Pretendard Variable",
 };
 export const lightThemeVars = defaultThemeVars;
 
@@ -68,13 +64,18 @@ export const darkThemeVars = {
     secondary: colorPaletteVars.emerald,
     shadow: colorPaletteVars.allBlack,
     error: colorPaletteVars.red,
-    warning: colorPaletteVars.yellow
+    warning: colorPaletteVars.yellow,
   },
-  font: "Pretendard",
+  font: "Pretendard Variable",
 };
+
+globalStyle("button", {
+  all: "unset",
+});
 
 globalStyle(":root", {
   fontFamily: themeVars.font,
+  boxSizing: "border-box",
 });
 
 createGlobalTheme('[data-theme="light"]', themeVars, lightThemeVars);
@@ -82,6 +83,7 @@ createGlobalTheme('[data-theme="light"]', themeVars, lightThemeVars);
 createGlobalTheme('[data-theme="dark"]', themeVars, darkThemeVars);
 
 createGlobalTheme('[data-theme="custom"]', themeVars, lightThemeVars);
+
 export { themeVars };
 export type ColorPaletteType = typeof colorPaletteVars.amber;
 export type ColorStatusType = typeof colorStatusVar;

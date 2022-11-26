@@ -2,7 +2,7 @@ import { addons } from "@storybook/addons";
 import { GLOBALS_UPDATED, UPDATE_GLOBALS } from "@storybook/core-events";
 import React from "react";
 import { useEffect } from "react";
-import { ThemeType, useTheme } from "../src/core/hooks/useTheme";
+import { ThemeType, useTheme } from "../src/core/hooks/use-theme";
 
 const LIGHT_THEME_VALUE = "#FAFAFA";
 const DARK_THEME_VALUE = "#404040";
@@ -24,21 +24,25 @@ export const parameters = {
 };
 
 const withThemeProvider = (Story, context) => {
-  const { currentTheme } = useTheme();
+  const { currentTheme, changeCurrentTheme } = useTheme();
   useEffect(() => {
-    let channel = addons.getChannel();
-    storyListner(channel);
-    return () => channel.removeListener(GLOBALS_UPDATED, storyListner);
+    console.log(currentTheme);
+    if (currentTheme === "custom") {
+      changeCurrentTheme("light");
+    }
   }, []);
   useEffect(() => {
-    if (currentTheme) {
-      appListner(currentTheme);
-    }
+    let channel = addons.getChannel();
+    storyListner(channel, changeCurrentTheme);
+    return () => channel.removeListener(GLOBALS_UPDATED, storyListner);
   }, [currentTheme]);
   return <Story {...context} />;
 };
 
-const storyListner = (channel: any) => {
+const storyListner = (
+  channel: any,
+  changeCurrentTheme: (theme: ThemeType) => void
+) => {
   channel.addListener(GLOBALS_UPDATED, (args) => {
     if (args.globals === undefined) {
       return;
@@ -46,12 +50,14 @@ const storyListner = (channel: any) => {
     let currentThemeValue = args.globals.backgrounds.value;
     if (currentThemeValue) {
       let prevTheme = document.documentElement?.getAttribute("data-theme");
-      console.log(prevTheme);
       if (prevTheme === "dark" && currentThemeValue === LIGHT_THEME_VALUE) {
-        document.documentElement.setAttribute("data-theme", "light");
+        changeCurrentTheme("light");
       }
       if (prevTheme === "light" && currentThemeValue === DARK_THEME_VALUE) {
-        document.documentElement.setAttribute("data-theme", "dark");
+        changeCurrentTheme("dark");
+      }
+      if (prevTheme === "custom") {
+        changeCurrentTheme("light");
       }
     }
   });

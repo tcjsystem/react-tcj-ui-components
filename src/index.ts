@@ -1,2 +1,2 @@
 export * from "./components";
-export * from "./core/hooks/useTheme";
+export * from "./core/hooks/use-theme";

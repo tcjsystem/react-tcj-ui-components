@@ -1,6 +1,5 @@
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 import { useTheme } from "../../../../core/hooks/use-theme";
-import { colorPaletteVars } from "../../../../core/styles/color-palette.css";
 import { ColorPaletteType } from "../../../../core/styles/theme.css";
 import {
   button,
@@ -9,30 +8,27 @@ import {
   customColorBorder,
   customColorDefault,
   customColorHover,
-} from "./styles.css";
+} from "../button/styles.css";
 
-export interface ButtonProps {
-  children: React.ReactNode;
-  leadingIcon?: React.ReactNode;
-  trailingIcon?: React.ReactNode;
-  variants?: ButtonVariants;
+export interface IconButtonProps {
+  icon?: React.ReactNode;
+  variants: ButtonVariants;
   customColorPalette?: ColorPaletteType;
-  color?: string;
-  onClick?: () => void;
 }
 
-export default function Button({
-  children,
-  leadingIcon,
-  trailingIcon,
+export default function IconButton({
+  icon,
   variants,
   customColorPalette,
-  onClick,
-}: ButtonProps) {
+}: IconButtonProps) {
   const { currentTheme } = useTheme();
   return (
     <button
-      className={button(variants)}
+      className={button({
+        ...variants,
+        borderRadius: "rounded",
+        padding: "rounded",
+      })}
       style={
         variants?.color === "custom" && customColorPalette
           ? assignInlineVars({
@@ -47,11 +43,8 @@ export default function Button({
             })
           : undefined
       }
-      onClick={onClick}
     >
-      {leadingIcon}
-      {children}
-      {trailingIcon}
+      {icon}
     </button>
   );
 }

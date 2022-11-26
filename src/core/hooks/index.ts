@@ -1,4 +1,4 @@
-export { useTheme, currentThemeAtom } from "./useTheme";
-export type { ThemeType } from "./useTheme";
-export { useInput, } from "./useInput"
-export type { InputError } from "./useInput"
+export { useTheme, currentThemeAtom } from "./use-theme";
+export type { ThemeType } from "./use-theme";
+export { useInput } from "./use-input";
+export type { InputError } from "./use-input";

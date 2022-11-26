@@ -1,28 +1,26 @@
-import { useRef, useState } from "react";
+import {
+  createContext,
+  Dispatch,
+  SetStateAction,
+  useContext,
+  useRef,
+  useState,
+} from "react";
 import { FiCalendar } from "react-icons/fi";
-import SidebarItem from "./sidebarItem";
-import SidebarItemGroup from "./sidebarItemGroup";
+import SidebarItem from "./sidebar-item";
+import SidebarItemGroup from "./sidebar-item-group";
 import * as styles from "./styles.css";
 
 interface SidebarContainerProps {
   header?: React.ReactNode;
-  items: React.ReactNode;
+  children: React.ReactNode;
 }
 
-export default function Sidebar({ header, items }: SidebarContainerProps) {
-  const [openGroups, setOpenGroups] = useState<string[]>([])
+export default function Sidebar({ header, children }: SidebarContainerProps) {
   return (
     <div className={styles.container}>
       <div className={styles.header}>{header}</div>
-      {/* {items} */}
-      <SidebarItemGroup id="test" isOpen={openGroups.includes("test")} toggleFn={() => {
-        setOpenGroups((prev) => [...prev, "test"])
-      }}
-        icon={<FiCalendar />}
-        title="test"
-      >
-        123
-      </SidebarItemGroup>
+      {children}
     </div>
   );
 }
