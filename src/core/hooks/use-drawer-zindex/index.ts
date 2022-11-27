@@ -1,6 +1,6 @@
 import { useAtom, useAtomValue } from "jotai";
 import { useEffect, useState } from "react";
-import { isDrawerOpenAtom } from "../../states/isDrawerOpen";
+import { isDrawerOpenAtom } from "../../states/is-drawer-open";
 
 export const useDrawerZIndex = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useAtom(isDrawerOpenAtom);
