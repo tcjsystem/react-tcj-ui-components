@@ -7,7 +7,7 @@ export const tabs = style({
   position: "relative",
   display: "flex",
   zIndex: 0,
-  borderBottom: `1px solid ${themeVars.color.background[200]}`,
+  borderBottom: `1px solid ${themeVars.color.background[300]}`,
   paddingBottom: "0.5rem",
   pointerEvents: "all",
   overflowX: "hidden",

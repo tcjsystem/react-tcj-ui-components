@@ -15,7 +15,8 @@ export default function Drawer({ isOpen, onClose, children }: DrawerProps) {
     config: {
       mass: 1,
       tension: 100,
-      friction: 10,
+      friction: 16,
+      clamp: !isOpen,
     },
   });
   return transition(

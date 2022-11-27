@@ -22,7 +22,7 @@ export const content = style({
   transition: transitionVars.short,
   selectors: {
     "&[data-open=true]": {
-      color: themeVars.color.text[700],
+      color: themeVars.color.text[600],
     },
   },
 });

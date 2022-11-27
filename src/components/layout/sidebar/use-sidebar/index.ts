@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface UseSidebarProps {
   defaultSelectedItemId?: string;
@@ -15,26 +15,33 @@ export const useSidebar = ({
   const [openGroups, setOpenGroups] = useState<string[]>(
     defaultOpenGroups || []
   );
-  const isOpen = (id: string) => {
+  useEffect(() => {
+    console.log(selectedItemId);
+  }, [selectedItemId]);
+  const isGroupOpen = (id: string) => {
     return openGroups.includes(id);
   };
   const toggleGroup = (id: string) => {
     setOpenGroups((prev) => {
-      if (isOpen(id)) {
+      if (isGroupOpen(id)) {
         return prev.filter((value) => value != id);
       } else {
         return [...prev, id];
       }
     });
   };
-  const isSelected = (id: string) => {
+  const isItemSelected = (id: string) => {
     return selectedItemId === id;
+  };
+  const onSelectItem = (id: string) => {
+    console.log(id);
+    setSelectedItemId(id);
   };
 
   return {
-    isOpen,
+    isGroupOpen,
     toggleGroup,
-    isSelected,
-    setSelectedItemId,
+    isItemSelected,
+    onSelectItem,
   };
 };

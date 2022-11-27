@@ -10,7 +10,7 @@ export const title = style([
     fontSize: "subtitle2",
   }),
   {
-    color: themeVars.color.text[600],
+    color: themeVars.color.text[700],
     display: "block",
     selectors: {
       "&[data-error=true]": {
@@ -26,9 +26,11 @@ export const inputContainer = style({
 });
 
 export const input = style({
+  fontFamily: "Pretendard Variable",
   display: "block",
   borderRadius: "0.25rem",
-  width: "100%",
+  minWidth: "100%",
+  maxWidth: "100%",
   border: "2px solid transparent",
   color: themeVars.color.text[900],
   backgroundColor: themeVars.color.background[100],
@@ -62,7 +64,6 @@ export const input = style({
       margin: 0,
     },
   },
-  transition: transitionVars.short,
 });
 
 export const errorIcon = style({

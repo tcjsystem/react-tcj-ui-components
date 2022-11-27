@@ -20,6 +20,14 @@ export const content = style({
     color: themeVars.color.text[600],
   },
   transition: transitionVars.short,
+  padding: "0 0.5rem",
+  selectors: {
+    "&[data-selected=true]": {
+      backgroundColor: themeVars.color.background[800],
+      borderRadius: "0.5rem",
+      color: themeVars.color.primary[600],
+    },
+  },
 });
 
 export const sidebarChildren = style({});
